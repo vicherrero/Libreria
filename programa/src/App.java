@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 import javax.swing.text.StyledEditorKit.BoldAction;
 
+
 import modelo.Libro;
 import modelo.Autor;
 import modelo.Almacen;
@@ -13,7 +14,8 @@ public class App {
         int tecla;
         int ritmoLectura = 1;
         int filas;
-        int i,j,k;
+        int i;
+        float costeTotal=0;
         Almacen almacen= null;
         do{
             System.out.println("|--------------------------------|");
@@ -64,16 +66,19 @@ public class App {
                     System.out.println("| Título |  Año Publicación  | Autor  |  Premio planeta  |  Páginas | Tiempo lectura minutos | Precio|");
                     for(i=0;i<almacen.getContadordeLibros();i++){
                         if(almacen.libros[i].autor.isPremio()== true){
-                        System.out.printf("%s     %d   %s %s     SI     %d      %d      %f\n", almacen.libros[i].getTitulo(),almacen.libros[i].getAño(),almacen.libros[i].autor.getNombre(),almacen.libros[i].autor.getApellido(),almacen.libros[i].getPaginas(),ritmoLectura,almacen.libros[i].getPrecio());
+                        System.out.printf("| %s        %d        %s %s          SI                    %d                %d                  %f|\n", almacen.libros[i].getTitulo(),almacen.libros[i].getAño(),almacen.libros[i].autor.getNombre(),almacen.libros[i].autor.getApellido(),almacen.libros[i].getPaginas(),ritmoLectura,almacen.libros[i].getPrecio());
                         } 
                        else{
-                         System.out.printf("%s     %d   %s %s     NO     %d      %d      %f\n", almacen.libros[i].getTitulo(),almacen.libros[i].getAño(),almacen.libros[i].autor.getNombre(),almacen.libros[i].autor.getApellido(),almacen.libros[i].getPaginas(),ritmoLectura,almacen.libros[i].getPrecio());
+                        System.out.printf("| %s     %d           %s %s          NO                    %d                %d                  %f|\n", almacen.libros[i].getTitulo(),almacen.libros[i].getAño(),almacen.libros[i].autor.getNombre(),almacen.libros[i].autor.getApellido(),almacen.libros[i].getPaginas(),ritmoLectura,almacen.libros[i].getPrecio());
                         }
                     }
                     System.out.println("|----------------------------------------------------------------------------------------------------|");
                     System.out.println("|----------------------------------------------------------------------------------------------------|");
-                    System.out.printf("| TIEMPO DE LECTURA TOTAL                                                                  $%d   |",ritmoLectura);
-                    System.out.printf("| PRECIO TOTAl |");
+                    System.out.printf("| TIEMPO DE LECTURA TOTAL                                                                  %d   |\n",ritmoLectura*almacen.getContadordeLibros());
+                    for(i=0;i<almacen.getContadordeLibros();i++) {
+                        costeTotal =costeTotal + almacen.libros[i].getPrecio();
+                    }
+                    System.out.printf("| PRECIO TOTAl                                                                            %f    |\n",costeTotal);
                     System.out.println("|----------------------------------------------------------------------------------------------------|");
                     break;
                 case 5:
