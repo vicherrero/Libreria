@@ -1,26 +1,21 @@
 package modelo;
 public class Libro {
 
-    private String autor;
+    public Autor autor = null;
     private String titulo;
     private int año;
     private int paginas;
     private float precio;
 
-    public Libro(String autor, String titulo, int año, int paginas, float precio) {
-        this.autor = autor;
+    public Libro(String nombre, String apellido, Boolean premio, String titulo, int año, int paginas, float precio) {
+        autor = new Autor(nombre,apellido,premio);
         this.titulo = titulo;
         this.año = año;
         this.paginas = paginas;
         this.precio = precio;
     }
     
-    public String getAutor() {
-        return autor;
-    }
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
+    
     public String getTitulo() {
         return titulo;
     }
